@@ -1,0 +1,38 @@
+All website images are now local WebP files under public/images/site-assets.
+
+Hero
+- hero-main-portrait.webp
+
+About
+- about-main-intro.webp
+- about-main-bg.webp
+- about-card-01.webp ~ about-card-06.webp
+
+Selected Cases
+- projects-ql-cover.webp  [QL source image was not present in uploaded files; current file is a visible local WebP placeholder]
+- projects-mg-cover.webp  [from uploaded MG.png]
+- projects-ns-cover.webp  [from uploaded NS.png]
+- projects-inno-cover.webp [from uploaded Inno.png]
+
+Education
+- education-chengdu-bg.webp [local WebP placeholder because no Chengdu image source was provided]
+- education-shanghai-bg.webp
+- education-shanghai-small.webp [from uploaded 上海小图.jpg]
+- education-exeter-bg.webp
+- education-exeter-graduation.webp [from uploaded Graduation.JPG]
+- education-exeter-small.webp
+
+Life
+- life-cats-pop.webp [from uploaded Pop.JPG]
+- life-cats-ad.webp
+- life-cats-mcflurry.webp [from uploaded Mc.JPG]
+- life-hamburger-bg.webp [from uploaded 汉堡背景.JPG]
+- life-hamburger-small-1.webp [from uploaded 汉堡1.jpg]
+- life-hamburger-small-2.webp [from uploaded 汉堡2.PNG]
+- life-go-bg.webp
+- life-basketball-bg.webp [local WebP placeholder because only small image was provided]
+- life-basketball-small.webp [from uploaded 篮球小图.jpg]
+- life-music-travel-bg.webp [local WebP placeholder because no local source was provided]
+- life-music-small.webp [local WebP placeholder because no local source was provided]
+
+App.tsx now has no data:image, no base64, no Unsplash URL, and no /images/generated path.
