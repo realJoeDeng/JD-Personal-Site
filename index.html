@@ -8,6 +8,33 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      window.__JOE_LINKEDIN_URL__ = "https://www.linkedin.com/in/jingyin-deng-006707233/";
+      function enhanceLinkedInLink() {
+        var nodes = Array.prototype.slice.call(document.querySelectorAll("span, div, a"));
+        nodes.forEach(function (node) {
+          if ((node.textContent || "").trim() === "LinkedIn") {
+            node.style.cursor = "pointer";
+            node.setAttribute("role", "link");
+            node.setAttribute("tabindex", "0");
+            node.onclick = function () {
+              window.open(window.__JOE_LINKEDIN_URL__, "_blank", "noopener,noreferrer");
+            };
+            node.onkeydown = function (event) {
+              if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                window.open(window.__JOE_LINKEDIN_URL__, "_blank", "noopener,noreferrer");
+              }
+            };
+          }
+        });
+      }
+      window.addEventListener("load", enhanceLinkedInLink);
+      new MutationObserver(enhanceLinkedInLink).observe(document.documentElement, {
+        childList: true,
+        subtree: true
+      });
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
