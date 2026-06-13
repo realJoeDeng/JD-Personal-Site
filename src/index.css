@@ -30,3 +30,44 @@ button, input, textarea {
 img {
   display: block;
 }
+
+/* Readability fixes for deployed pages */
+#hero .max-w-2xl {
+  background: rgba(0, 0, 0, 0.30);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 32px;
+  padding: 2rem;
+  backdrop-filter: blur(3px);
+  box-shadow: 0 24px 90px rgba(0, 0, 0, 0.26);
+}
+
+#hero .max-w-2xl p,
+#hero .max-w-2xl div,
+#hero .max-w-2xl h1 {
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.55);
+}
+
+#life [class*="bg-white/94"] {
+  background: rgba(255, 255, 255, 0.96) !important;
+  border: 1px solid rgba(255, 255, 255, 0.72) !important;
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.42) !important;
+}
+
+#life [class*="bg-white/94"] p {
+  color: #111827 !important;
+  font-weight: 500;
+  text-shadow: none !important;
+}
+
+#life > div > div:last-child {
+  z-index: 80 !important;
+  background: #F8F6F3 !important;
+}
+
+#life > div > div:last-child::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #F8F6F3;
+  z-index: -1;
+}
