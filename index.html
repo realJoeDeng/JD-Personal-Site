@@ -68,7 +68,14 @@
           var text = (node.textContent || "").trim();
           if (text === "What It Shows") node.textContent = "Core Insight";
           if (text === "这说明什么") node.textContent = "核心洞察";
-          if (isChinese && text === "From noise to usable judgment") node.textContent = "从纷繁信息，到可用判断";
+          if (isChinese && text === "From noise to usable judgment") {
+            node.textContent = "从纷繁信息，到可用判断";
+            node.style.fontSize = "clamp(1.45rem, 2.35vw, 2.05rem)";
+            node.style.fontWeight = "650";
+            node.style.lineHeight = "1.22";
+            node.style.letterSpacing = "0.04em";
+            node.style.color = "rgba(255, 255, 255, 0.96)";
+          }
         });
       }
 
