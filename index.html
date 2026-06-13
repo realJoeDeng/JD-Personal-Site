@@ -61,9 +61,21 @@
         }, true);
       }
 
+      function polishTextLabels() {
+        var isChinese = document.body.innerText.indexOf("关于我") !== -1;
+        var nodes = Array.prototype.slice.call(document.querySelectorAll("span, div"));
+        nodes.forEach(function (node) {
+          var text = (node.textContent || "").trim();
+          if (text === "What It Shows") node.textContent = "Core Insight";
+          if (text === "这说明什么") node.textContent = "核心洞察";
+          if (isChinese && text === "From noise to usable judgment") node.textContent = "从纷繁信息，到可用判断";
+        });
+      }
+
       function enhancePage() {
         enhanceLinkedInLink();
         enhanceContactForm();
+        polishTextLabels();
       }
 
       window.addEventListener("load", enhancePage);
