@@ -95,3 +95,11 @@ img {
   padding-top: 0.9rem !important;
   padding-bottom: 0.9rem !important;
 }
+
+#about .group:hover img {
+  filter: blur(2px) brightness(0.55) !important;
+}
+
+#about .group:hover p {
+  color: rgba(255, 255, 255, 0.94) !important;
+}
