@@ -10,6 +10,12 @@
     <div id="root"></div>
     <script>
       window.__JOE_LINKEDIN_URL__ = "https://www.linkedin.com/in/jingyin-deng-006707233/";
+      window.__JOE_EMAIL__ = "realjoedengigo@gmail.com";
+
+      function openLinkedIn() {
+        window.open(window.__JOE_LINKEDIN_URL__, "_blank", "noopener,noreferrer");
+      }
+
       function enhanceLinkedInLink() {
         var nodes = Array.prototype.slice.call(document.querySelectorAll("span, div, a"));
         nodes.forEach(function (node) {
@@ -17,20 +23,51 @@
             node.style.cursor = "pointer";
             node.setAttribute("role", "link");
             node.setAttribute("tabindex", "0");
-            node.onclick = function () {
-              window.open(window.__JOE_LINKEDIN_URL__, "_blank", "noopener,noreferrer");
-            };
+            node.onclick = openLinkedIn;
             node.onkeydown = function (event) {
               if (event.key === "Enter" || event.key === " ") {
                 event.preventDefault();
-                window.open(window.__JOE_LINKEDIN_URL__, "_blank", "noopener,noreferrer");
+                openLinkedIn();
               }
             };
           }
         });
       }
-      window.addEventListener("load", enhanceLinkedInLink);
-      new MutationObserver(enhanceLinkedInLink).observe(document.documentElement, {
+
+      function enhanceContactForm() {
+        var contact = document.getElementById("contact");
+        if (!contact) return;
+        var form = contact.querySelector("form");
+        if (!form || form.dataset.mailtoReady === "true") return;
+        form.dataset.mailtoReady = "true";
+        form.addEventListener("submit", function (event) {
+          event.preventDefault();
+          event.stopPropagation();
+          if (event.stopImmediatePropagation) event.stopImmediatePropagation();
+
+          var inputs = form.querySelectorAll("input");
+          var textarea = form.querySelector("textarea");
+          var name = inputs[0] ? inputs[0].value.trim() : "";
+          var email = inputs[1] ? inputs[1].value.trim() : "";
+          var subject = inputs[2] && inputs[2].value.trim() ? inputs[2].value.trim() : "Message from personal website";
+          var message = textarea ? textarea.value.trim() : "";
+          var body = "Name: " + name + "\n" +
+            "Email: " + email + "\n\n" +
+            "Message:\n" + message;
+
+          window.location.href = "mailto:" + window.__JOE_EMAIL__ +
+            "?subject=" + encodeURIComponent(subject) +
+            "&body=" + encodeURIComponent(body);
+        }, true);
+      }
+
+      function enhancePage() {
+        enhanceLinkedInLink();
+        enhanceContactForm();
+      }
+
+      window.addEventListener("load", enhancePage);
+      new MutationObserver(enhancePage).observe(document.documentElement, {
         childList: true,
         subtree: true
       });
