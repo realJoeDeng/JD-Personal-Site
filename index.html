@@ -61,6 +61,24 @@
         }, true);
       }
 
+      function applyFrameworkTitleStyle(node, mode) {
+        if (mode === "cn") {
+          node.style.fontSize = "clamp(1.45rem, 2.35vw, 2.05rem)";
+          node.style.fontWeight = "650";
+          node.style.lineHeight = "1.22";
+          node.style.letterSpacing = "0.04em";
+          node.style.color = "rgba(255, 255, 255, 0.96)";
+          node.style.textTransform = "none";
+        } else {
+          node.style.fontSize = "";
+          node.style.fontWeight = "";
+          node.style.lineHeight = "";
+          node.style.letterSpacing = "";
+          node.style.color = "";
+          node.style.textTransform = "";
+        }
+      }
+
       function polishTextLabels() {
         var isChinese = document.body.innerText.indexOf("关于我") !== -1;
         var nodes = Array.prototype.slice.call(document.querySelectorAll("span, div"));
@@ -68,21 +86,13 @@
           var text = (node.textContent || "").trim();
           if (text === "What It Shows") node.textContent = "Core Insight";
           if (text === "这说明什么") node.textContent = "核心洞察";
-          if (isChinese && text === "From noise to usable judgment") {
+          if (isChinese && (text === "From noise to usable judgment" || text === "FROM NOISE TO USABLE JUDGMENT")) {
             node.textContent = "从纷繁信息，到可用判断";
-            node.style.fontSize = "clamp(1.45rem, 2.35vw, 2.05rem)";
-            node.style.fontWeight = "650";
-            node.style.lineHeight = "1.22";
-            node.style.letterSpacing = "0.04em";
-            node.style.color = "rgba(255, 255, 255, 0.96)";
+            applyFrameworkTitleStyle(node, "cn");
           }
           if (!isChinese && text === "从纷繁信息，到可用判断") {
-            node.textContent = "From noise to usable judgment";
-            node.style.fontSize = "";
-            node.style.fontWeight = "";
-            node.style.lineHeight = "";
-            node.style.letterSpacing = "";
-            node.style.color = "";
+            node.textContent = "FROM NOISE TO USABLE JUDGMENT";
+            applyFrameworkTitleStyle(node, "en");
           }
         });
       }
