@@ -103,3 +103,96 @@ img {
 #about .group:hover p {
   color: rgba(255, 255, 255, 0.94) !important;
 }
+
+/* Selected Cases: large overview by default; compact case nav + detail while hovering the case area. */
+@media (min-width: 768px) {
+  #projects {
+    padding-top: 5.5rem !important;
+    padding-bottom: 5rem !important;
+  }
+
+  #projects > div > div:nth-child(2),
+  #projects > div > div:nth-child(2) button,
+  #projects > div > div:nth-child(3) {
+    transition: all 0.32s ease !important;
+  }
+
+  #projects > div > div:nth-child(3) {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transform: translateY(-8px);
+    pointer-events: none;
+  }
+
+  #projects > div:has(> div:nth-child(2):hover) > div:nth-child(2),
+  #projects > div:has(> div:nth-child(3):hover) > div:nth-child(2) {
+    margin-bottom: 1rem !important;
+  }
+
+  #projects > div:has(> div:nth-child(2):hover) > div:nth-child(2) button,
+  #projects > div:has(> div:nth-child(3):hover) > div:nth-child(2) button {
+    height: 118px !important;
+    min-height: 118px !important;
+  }
+
+  #projects > div:has(> div:nth-child(2):hover) > div:nth-child(2) button h3,
+  #projects > div:has(> div:nth-child(3):hover) > div:nth-child(2) button h3 {
+    font-size: 1.12rem !important;
+    line-height: 1.15 !important;
+    margin-bottom: 0 !important;
+  }
+
+  #projects > div:has(> div:nth-child(2):hover) > div:nth-child(2) button p,
+  #projects > div:has(> div:nth-child(3):hover) > div:nth-child(2) button p {
+    display: none !important;
+  }
+
+  #projects > div:has(> div:nth-child(2):hover) > div:nth-child(2) button span,
+  #projects > div:has(> div:nth-child(3):hover) > div:nth-child(2) button span {
+    font-size: 0.62rem !important;
+    max-width: 94% !important;
+    white-space: normal !important;
+    line-height: 1.15 !important;
+    padding-top: 0.28rem !important;
+    padding-bottom: 0.28rem !important;
+    margin-bottom: 0.55rem !important;
+  }
+
+  #projects > div:has(> div:nth-child(2):hover) > div:nth-child(2) button .absolute.left-5,
+  #projects > div:has(> div:nth-child(3):hover) > div:nth-child(2) button .absolute.left-5 {
+    left: 1rem !important;
+    right: 1rem !important;
+    bottom: 0.9rem !important;
+  }
+
+  #projects > div:has(> div:nth-child(2):hover) > div:nth-child(3),
+  #projects > div:has(> div:nth-child(3):hover) > div:nth-child(3) {
+    max-height: 520px;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  #projects > div > div:nth-child(3) > div > div:first-child {
+    min-height: 235px !important;
+  }
+
+  #projects > div > div:nth-child(3) > div > div:last-child {
+    padding: 1.4rem 1.6rem !important;
+  }
+
+  #projects > div > div:nth-child(3) p {
+    font-size: 0.82rem !important;
+    line-height: 1.58 !important;
+  }
+
+  #projects > div > div:nth-child(3) span {
+    font-size: 0.68rem !important;
+  }
+
+  #projects > div > div:nth-child(3) h3 {
+    font-size: 1.75rem !important;
+    line-height: 1.15 !important;
+  }
+}
