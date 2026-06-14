@@ -12,6 +12,49 @@
       window.__JOE_LINKEDIN_URL__ = "https://www.linkedin.com/in/jingyin-deng-006707233/";
       window.__JOE_EMAIL__ = "realjoedengigo@gmail.com";
 
+      function isChinesePage() {
+        return document.body && document.body.innerText.indexOf("关于我") !== -1;
+      }
+
+      function applyPathTitleStyle(node, mode) {
+        if (!node) return;
+        if (mode === "cn") {
+          node.style.fontSize = "clamp(1.45rem, 2.35vw, 2.05rem)";
+          node.style.fontWeight = "650";
+          node.style.lineHeight = "1.22";
+          node.style.letterSpacing = "0.04em";
+          node.style.color = "rgba(255, 255, 255, 0.96)";
+          node.style.textTransform = "none";
+        } else {
+          node.style.fontSize = "1rem";
+          node.style.fontWeight = "400";
+          node.style.lineHeight = "1.5";
+          node.style.letterSpacing = "0.42em";
+          node.style.color = "rgba(216, 184, 120, 0.82)";
+          node.style.textTransform = "uppercase";
+        }
+      }
+
+      function polishStaticLabels() {
+        var chinese = isChinesePage();
+        var nodes = Array.prototype.slice.call(document.querySelectorAll("span, div"));
+        nodes.forEach(function (node) {
+          var text = (node.textContent || "").trim();
+          if (text === "What It Shows") node.textContent = "Core Insight";
+          if (text === "这说明什么") node.textContent = "核心洞察";
+
+          if (chinese && (text === "From noise to usable judgment" || text === "FROM NOISE TO USABLE JUDGMENT")) {
+            node.textContent = "从纷繁信息，到可用判断";
+            applyPathTitleStyle(node, "cn");
+          }
+
+          if (!chinese && text === "从纷繁信息，到可用判断") {
+            node.textContent = "FROM NOISE TO USABLE JUDGMENT";
+            applyPathTitleStyle(node, "en");
+          }
+        });
+      }
+
       document.addEventListener("click", function (event) {
         var target = event.target;
         var node = target && target.closest ? target.closest("span, div, a") : null;
@@ -19,6 +62,9 @@
           event.preventDefault();
           window.open(window.__JOE_LINKEDIN_URL__, "_blank", "noopener,noreferrer");
         }
+
+        window.setTimeout(polishStaticLabels, 120);
+        window.setTimeout(polishStaticLabels, 360);
       }, true);
 
       document.addEventListener("submit", function (event) {
@@ -43,6 +89,10 @@
           "?subject=" + encodeURIComponent(subject) +
           "&body=" + encodeURIComponent(body);
       }, true);
+
+      window.addEventListener("load", function () {
+        window.setTimeout(polishStaticLabels, 250);
+      });
     </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
