@@ -111,6 +111,14 @@ img {
     padding-bottom: 5rem !important;
   }
 
+  #projects > div > div:first-child {
+    margin-bottom: 2.25rem !important;
+  }
+
+  #projects > div > div:first-child p {
+    display: none !important;
+  }
+
   #projects > div > div:nth-child(2),
   #projects > div > div:nth-child(2) button,
   #projects > div > div:nth-child(3) {
@@ -161,7 +169,7 @@ img {
   }
 
   #projects > div:hover > div:nth-child(3) {
-    max-height: 520px;
+    max-height: 620px;
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
