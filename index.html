@@ -6,7 +6,7 @@
     <meta name="description" content="Joe Deng personal website" />
     <title>Joe Deng | Personal Website</title>
     <style>
-      #hero img[alt="Joe Deng"]{object-position:68% 16%!important}
+      #hero img[alt="Joe Deng"]{object-fit:contain!important;object-position:center center!important}
       .life-reel-panel{position:absolute;inset:0;background:#071018;overflow:hidden;pointer-events:none;color:#fff;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
       .life-reel-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center;transform:scale(1.06);filter:brightness(.42) saturate(.70) contrast(1.06)}
       .life-reel-panel:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,11,18,.94) 0%,rgba(7,16,24,.66) 34%,rgba(7,16,24,.40) 58%,rgba(7,16,24,.84) 100%);z-index:1}
@@ -28,7 +28,7 @@
       window.__JOE_EMAIL__ = "realjoedengigo@gmail.com";
       window.__lifeReelIndex = 1;
       window.__lifeReelWheelLock = false;
-      window.__lifeReelAssetVersion = "aspect-v3";
+      window.__lifeReelAssetVersion = "aspect-v4";
 
       function isChinesePage() {
         return document.body && document.body.innerText.indexOf("关于我") !== -1;
