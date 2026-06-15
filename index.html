@@ -5,6 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Joe Deng personal website" />
     <title>Joe Deng | Personal Website</title>
+    <style>
+      .life-reel-panel{position:absolute;inset:0;background:#071018;overflow:hidden;pointer-events:none;color:#fff;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+      .life-reel-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center;transform:scale(1.06);filter:brightness(.44) saturate(.72) contrast(1.05)}
+      .life-reel-panel:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,11,18,.94) 0%,rgba(7,16,24,.64) 34%,rgba(7,16,24,.42) 58%,rgba(7,16,24,.82) 100%);z-index:1}
+      .life-reel-panel:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 82% 22%,rgba(216,184,120,.18),transparent 34%),radial-gradient(circle at 15% 70%,rgba(91,124,153,.14),transparent 38%),linear-gradient(0deg,rgba(5,11,18,.92),transparent 46%,rgba(5,11,18,.50));z-index:2}
+      .life-reel-grain{position:absolute;inset:0;z-index:3;opacity:.12;mix-blend-mode:soft-light;background-image:radial-gradient(rgba(255,255,255,.55) .6px,transparent .85px);background-size:3px 3px}
+      .life-reel-copy{position:absolute;left:6.5vw;top:22vh;z-index:5;max-width:29rem;color:#fff}.life-reel-kicker{font-size:12px;letter-spacing:.42em;text-transform:uppercase;color:rgba(255,255,255,.58);margin-bottom:1.5rem}.life-reel-dash{width:1.5rem;height:1px;background:rgba(216,184,120,.72);margin-bottom:2rem}.life-reel-title{font-size:clamp(2.25rem,3.05vw,3.15rem);line-height:1.5;letter-spacing:.12em;font-weight:300;color:rgba(255,255,255,.88)}.life-reel-sub{margin-top:2.15rem;font-size:clamp(.88rem,1vw,1rem);line-height:1.95;letter-spacing:.08em;color:rgba(255,255,255,.56)}.life-reel-en{margin-top:1.8rem;font-size:.9rem;letter-spacing:.08em;color:rgba(255,255,255,.58)}
+      .life-reel-frames{position:absolute;inset:0;z-index:4;transform:translateX(calc(36px + var(--reel-p,0) * -114px));transition:transform .28s ease-out}.life-reel-frame{position:absolute;border-radius:12px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.035);box-shadow:0 28px 90px rgba(0,0,0,.34);overflow:hidden;backdrop-filter:blur(1px);opacity:.78}.life-reel-frame img{width:100%;height:100%;object-fit:cover;opacity:.86;display:block}.life-reel-frame:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.52),transparent 44%,rgba(0,0,0,.18));pointer-events:none}.life-reel-no,.life-reel-label,.life-reel-meta{position:absolute;z-index:2;font-size:10px;letter-spacing:.18em;color:rgba(255,255,255,.56)}.life-reel-no{left:.75rem;top:.75rem}.life-reel-label{right:.75rem;top:.75rem;text-transform:uppercase;color:rgba(255,255,255,.48);letter-spacing:.22em}.life-reel-meta{left:.75rem;bottom:.75rem;text-transform:uppercase;color:rgba(255,255,255,.45)}
+      .life-reel-f1{left:36%;top:31%;width:9.2rem;height:25rem;transform:rotate(-1.5deg);opacity:.72}.life-reel-f2{left:45%;top:28%;width:17.2rem;height:28.5rem;transform:rotate(.8deg);opacity:.96}.life-reel-f3{left:61%;top:33%;width:9.5rem;height:23rem;transform:rotate(-.8deg);opacity:.74}.life-reel-f4{left:70%;top:43%;width:14rem;height:19rem;transform:rotate(.6deg);opacity:.84}.life-reel-f5{left:84%;top:38%;width:7.5rem;height:20.5rem;transform:rotate(-.4deg);opacity:.78}.life-reel-f6{left:92%;top:36%;width:9rem;height:22rem;transform:rotate(1deg);opacity:.56}.life-reel-f2{box-shadow:0 30px 110px rgba(0,0,0,.48),0 0 0 1px rgba(216,184,120,.08)}
+      .life-reel-timeline{position:absolute;left:6.5vw;right:7vw;bottom:7vh;z-index:6;color:rgba(255,255,255,.46)}.life-reel-timeline-title{font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:rgba(255,255,255,.64);margin-bottom:1rem}.life-reel-track{position:relative;height:32px}.life-reel-line{position:absolute;left:0;right:0;top:50%;height:1px;background:rgba(255,255,255,.20)}.life-reel-node{position:absolute;left:calc(10% + var(--reel-p,0) * 76%);top:50%;width:8px;height:8px;border-radius:999px;background:#f3e6d0;box-shadow:0 0 18px rgba(243,230,208,.82);transform:translate(-50%,-50%);transition:left .28s ease-out}.life-reel-mark{position:absolute;top:50%;transform:translateY(-50%)}.life-reel-mark-dot{width:4px;height:4px;border-radius:999px;background:rgba(255,255,255,.30)}.life-reel-mark-num{margin-top:.75rem;transform:translateX(-50%);font-size:10px;letter-spacing:.18em;color:rgba(255,255,255,.36)}.life-reel-count{position:absolute;right:0;top:50%;transform:translateY(-50%);font-size:.9rem;letter-spacing:.22em;color:rgba(255,255,255,.58)}
+      @media(max-width:900px){.life-reel-copy{left:7vw;top:17vh;max-width:86vw}.life-reel-title{font-size:2rem}.life-reel-f1{left:10%;top:52%;width:7rem;height:13rem}.life-reel-f2{left:32%;top:49%;width:11rem;height:15rem}.life-reel-f3,.life-reel-f4,.life-reel-f5,.life-reel-f6{display:none}.life-reel-timeline{left:7vw;right:7vw;bottom:6vh}}
+    </style>
   </head>
   <body>
     <div id="root"></div>
@@ -42,17 +54,81 @@
           var text = (node.textContent || "").trim();
           if (text === "What It Shows") node.textContent = "Core Insight";
           if (text === "这说明什么") node.textContent = "核心洞察";
-
           if (chinese && (text === "From noise to usable judgment" || text === "FROM NOISE TO USABLE JUDGMENT")) {
             node.textContent = "从纷繁信息，到可用判断";
             applyPathTitleStyle(node, "cn");
           }
-
           if (!chinese && text === "从纷繁信息，到可用判断") {
             node.textContent = "FROM NOISE TO USABLE JUDGMENT";
             applyPathTitleStyle(node, "en");
           }
         });
+      }
+
+      function asset(path) {
+        return "images/site-assets/" + path;
+      }
+
+      function installLifeReel() {
+        var life = document.getElementById("life");
+        if (!life) return;
+        var sticky = life.querySelector(":scope > div");
+        if (!sticky || !sticky.children || sticky.children.length < 6) return;
+        var panel = sticky.children[5];
+        if (!panel || panel.dataset.lifeReelInstalled === "true") return;
+        panel.dataset.lifeReelInstalled = "true";
+        panel.className = "absolute inset-0 bg-[#071018] pointer-events-none overflow-hidden";
+        panel.innerHTML = [
+          '<div class="life-reel-panel">',
+          '<img class="life-reel-bg" src="' + asset('life-reel-bg.webp') + '" alt="Life on the road" />',
+          '<div class="life-reel-grain"></div>',
+          '<div class="life-reel-copy">',
+          '<div class="life-reel-kicker">Life / On the Road</div>',
+          '<div class="life-reel-dash"></div>',
+          '<div class="life-reel-title">我把远方留给路，<br />把情绪留给歌，<br />把时间留给照片。</div>',
+          '<div class="life-reel-sub">每一段路，都是一次与世界的对话。<br />摄影、音乐、文字，是我记录感受的方式。</div>',
+          '<div class="life-reel-en">Keep walking, keep recording.</div>',
+          '</div>',
+          '<div class="life-reel-frames">',
+          reelFrame('life-reel-f1', 'life-reel-01-stonehenge.webp', '01', '', '35MM'),
+          reelFrame('life-reel-f2', 'life-reel-02-road.webp', '02', 'ON THE ROAD', '35MM   f/2.0'),
+          reelFrame('life-reel-f3', 'life-reel-03-city.webp', '03', '', 'ISO 400'),
+          reelFrame('life-reel-f4', 'life-reel-04-sea.webp', '04', 'BY THE SEA', '1/60'),
+          reelFrame('life-reel-f5', 'life-reel-05-silhouette.webp', '05', 'NIGHT SONGS', '50MM'),
+          reelFrame('life-reel-f6', 'life-reel-06-street.webp', '06', 'SILENT MOMENTS', ''),
+          '</div>',
+          '<div class="life-reel-timeline"><div class="life-reel-timeline-title">A Day in Pieces</div><div class="life-reel-track"><div class="life-reel-line"></div><div class="life-reel-node"></div>',
+          timelineMark('01', 10), timelineMark('02', 25.2), timelineMark('03', 40.4), timelineMark('04', 55.6), timelineMark('05', 70.8), timelineMark('06', 86),
+          '<div class="life-reel-count">01 / 06</div></div></div>',
+          '</div>'
+        ].join('');
+        updateLifeReelProgress();
+      }
+
+      function reelFrame(cls, img, no, label, meta) {
+        return '<div class="life-reel-frame ' + cls + '"><img src="' + asset(img) + '" alt="Life reel ' + no + '" /><div class="life-reel-no">' + no + '</div>' + (label ? '<div class="life-reel-label">' + label + '</div>' : '') + (meta ? '<div class="life-reel-meta">' + meta + '</div>' : '') + '</div>';
+      }
+
+      function timelineMark(no, left) {
+        return '<div class="life-reel-mark" style="left:' + left + '%"><div class="life-reel-mark-dot"></div><div class="life-reel-mark-num">' + no + '</div></div>';
+      }
+
+      function updateLifeReelProgress() {
+        var life = document.getElementById("life");
+        var container = document.querySelector("[data-scroll-container]");
+        var panel = document.querySelector(".life-reel-panel");
+        if (!life || !container || !panel) return;
+        var start = life.offsetTop + life.offsetHeight * 0.72;
+        var end = life.offsetTop + life.offsetHeight * 0.86;
+        var p = (container.scrollTop - start) / Math.max(1, end - start);
+        p = Math.max(0, Math.min(1, p));
+        panel.style.setProperty("--reel-p", String(p));
+      }
+
+      function enhancePage() {
+        polishStaticLabels();
+        installLifeReel();
+        updateLifeReelProgress();
       }
 
       document.addEventListener("click", function (event) {
@@ -62,36 +138,36 @@
           event.preventDefault();
           window.open(window.__JOE_LINKEDIN_URL__, "_blank", "noopener,noreferrer");
         }
-
-        window.setTimeout(polishStaticLabels, 120);
-        window.setTimeout(polishStaticLabels, 360);
+        window.setTimeout(enhancePage, 120);
+        window.setTimeout(enhancePage, 360);
       }, true);
 
       document.addEventListener("submit", function (event) {
         var form = event.target;
         if (!form || !form.closest || !form.closest("#contact")) return;
-
         event.preventDefault();
         event.stopPropagation();
         if (event.stopImmediatePropagation) event.stopImmediatePropagation();
-
         var inputs = form.querySelectorAll("input");
         var textarea = form.querySelector("textarea");
         var name = inputs[0] ? inputs[0].value.trim() : "";
         var email = inputs[1] ? inputs[1].value.trim() : "";
         var subject = inputs[2] && inputs[2].value.trim() ? inputs[2].value.trim() : "Message from personal website";
         var message = textarea ? textarea.value.trim() : "";
-        var body = "Name: " + name + "\n" +
-          "Email: " + email + "\n\n" +
-          "Message:\n" + message;
-
-        window.location.href = "mailto:" + window.__JOE_EMAIL__ +
-          "?subject=" + encodeURIComponent(subject) +
-          "&body=" + encodeURIComponent(body);
+        var body = "Name: " + name + "\n" + "Email: " + email + "\n\n" + "Message:\n" + message;
+        window.location.href = "mailto:" + window.__JOE_EMAIL__ + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
       }, true);
 
       window.addEventListener("load", function () {
-        window.setTimeout(polishStaticLabels, 250);
+        window.setTimeout(enhancePage, 250);
+        window.setTimeout(enhancePage, 900);
+        var container = document.querySelector("[data-scroll-container]");
+        if (container) {
+          container.addEventListener("scroll", function () {
+            installLifeReel();
+            window.requestAnimationFrame(updateLifeReelProgress);
+          }, { passive: true });
+        }
       });
     </script>
     <script type="module" src="/src/main.tsx"></script>
