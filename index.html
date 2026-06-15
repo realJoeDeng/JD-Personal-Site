@@ -71,6 +71,45 @@
         });
       }
 
+      function patchHeroAbout() {
+        var chinese = isChinesePage();
+        var hero = document.getElementById("hero");
+        if (hero) {
+          var taglineWrap = hero.querySelector(".space-y-2");
+          var taglineLines = taglineWrap ? Array.prototype.slice.call(taglineWrap.querySelectorAll("p")) : [];
+          if (taglineLines[0]) {
+            taglineLines[0].textContent = chinese ? "AI 驱动的金融从业者" : "AI-Native Finance Professional";
+            taglineLines[0].style.display = "";
+          }
+          if (taglineLines[1]) taglineLines[1].style.display = "none";
+          var descriptor = Array.prototype.slice.call(hero.querySelectorAll("p")).find(function (p) {
+            var cls = p.getAttribute("class") || "";
+            return cls.indexOf("tracking-widest") !== -1;
+          });
+          if (descriptor) descriptor.textContent = chinese ? "资本市场 · 投资银行 · 投资研究" : "Capital Markets · Investment Banking · Investment Research";
+        }
+
+        var about = document.getElementById("about");
+        if (about) {
+          var intro = about.querySelector("p.whitespace-pre-line");
+          if (intro) {
+            intro.textContent = chinese ? [
+              "我不太相信信息会自己形成判断。",
+              "一家公司要先被理解，才可能被讲清楚；一笔交易要先被拆开，才可能被推进；一个行业要先被反复比对，才可能变成可用的观点。",
+              "我从研究开始，也在资本市场项目中成长。过去的工作横跨 IPO 执行、业务梳理、行业比较、估值逻辑、投资材料和项目协调。很多工作藏在流程和细节之中，但它们决定了一份材料能不能被阅读、被质疑、被继续使用。",
+              "AI 对我来说，不是一个用来显得时髦的标签，而是一种正在改变工作方式的底层工具。它让我能够更高效地处理信息、搭建框架、验证判断，也让我把更多精力放在真正重要的部分：理解问题、找到关键变量，并形成自己的观点。",
+              "工作之外，我喜欢那些需要耐心和注意力的事情：围棋、旅行、音乐、运动和摄影。它们让我保持好奇，也提醒我，很多真正有分量的变化，往往都是在时间里慢慢累积出来的。"
+            ].join("\n\n") : [
+              "Numbers rarely speak for themselves.",
+              "A company has to be understood before it can be presented. A transaction has to be structured before it can move. An industry has to be broken down before it becomes judgment.",
+              "I started with research and grew into capital markets execution. My work sits across IPO execution, business diligence, industry benchmarking, valuation logic, investor materials, and project coordination — much of it behind the scenes, but essential to turning complexity into clarity and helping decisions move forward.",
+              "AI has become part of how I work. Not as a slogan, nor as a fashionable accessory, but as a way to process information faster, build sharper frameworks, and test judgment earlier. With AI taking on more of the heavy lifting in organizing and retrieving information, I can spend more time on the harder part: understanding the problem, identifying the variables that matter, and forming my own view.",
+              "Outside work, I am drawn to things that require patience and attention: Go, travel, music, sports, and photography. They keep me curious, grounded, and aware that the most meaningful changes often compound quietly over time."
+            ].join("\n\n");
+          }
+        }
+      }
+
       function asset(path) {
         return "images/site-assets/" + path + "?v=" + window.__lifeReelAssetVersion;
       }
@@ -224,6 +263,7 @@
 
       function enhancePage() {
         polishStaticLabels();
+        patchHeroAbout();
         installLifeReel();
       }
 
