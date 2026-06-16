@@ -8,13 +8,21 @@ function injectLifeReelStyle() {
     .life-reel-frame[data-shape="panorama"],
     .life-reel-frame[data-shape="square"],
     .life-reel-frame[data-shape="portrait"] {
-      width: min(var(--life-frame-width, 540px), 42vw) !important;
+      width: min(560px, 43vw) !important;
       height: auto !important;
-      aspect-ratio: var(--life-frame-ratio, 16 / 9) !important;
-      max-height: 68vh !important;
-      background: rgba(4, 9, 14, .72) !important;
+      aspect-ratio: 16 / 9 !important;
+      max-height: none !important;
+      background: rgba(4, 9, 14, .78) !important;
     }
-    .life-reel-frame-bg { display: none !important; }
+    .life-reel-frame-bg {
+      display: block !important;
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      filter: blur(18px) brightness(.46) saturate(.72) !important;
+      transform: scale(1.12) !important;
+      opacity: .34 !important;
+    }
     .life-reel-frame-main {
       width: 100% !important;
       height: 100% !important;
@@ -26,40 +34,41 @@ function injectLifeReelStyle() {
       transform: translate(-50%,-50%) translateY(-8px) scale(1.04) !important;
     }
     .life-reel-frame[data-offset="1"] {
-      transform: translate(-50%,-50%) translateX(390px) translateY(14px) scale(.78) !important;
+      transform: translate(-50%,-50%) translateX(410px) translateY(14px) scale(.76) !important;
     }
     .life-reel-frame[data-offset="-1"] {
-      transform: translate(-50%,-50%) translateX(-370px) translateY(20px) scale(.76) !important;
+      transform: translate(-50%,-50%) translateX(-390px) translateY(20px) scale(.74) !important;
     }
     .life-reel-frame[data-offset="2"] {
-      transform: translate(-50%,-50%) translateX(680px) translateY(32px) scale(.56) !important;
+      transform: translate(-50%,-50%) translateX(700px) translateY(32px) scale(.54) !important;
     }
     .life-reel-frame[data-offset="-2"] {
-      transform: translate(-50%,-50%) translateX(-640px) translateY(38px) scale(.54) !important;
+      transform: translate(-50%,-50%) translateX(-660px) translateY(38px) scale(.52) !important;
     }
     @media (max-width: 1280px) {
       .life-reel-frame,
       .life-reel-frame[data-shape] {
-        width: min(var(--life-frame-width, 460px), 40vw) !important;
+        width: min(470px, 41vw) !important;
+        aspect-ratio: 16 / 9 !important;
       }
       .life-reel-frame[data-offset="1"] {
-        transform: translate(-50%,-50%) translateX(310px) translateY(12px) scale(.72) !important;
+        transform: translate(-50%,-50%) translateX(320px) translateY(12px) scale(.70) !important;
       }
       .life-reel-frame[data-offset="-1"] {
-        transform: translate(-50%,-50%) translateX(-295px) translateY(18px) scale(.70) !important;
+        transform: translate(-50%,-50%) translateX(-305px) translateY(18px) scale(.68) !important;
       }
     }
     @media (max-width: 900px) {
       .life-reel-frame,
       .life-reel-frame[data-shape] {
-        width: min(var(--life-frame-width, 540px), 76vw) !important;
-        max-height: 38vh !important;
+        width: min(540px, 78vw) !important;
+        aspect-ratio: 16 / 9 !important;
       }
       .life-reel-frame[data-offset="1"] {
-        transform: translate(-50%,-50%) translateX(185px) scale(.68) !important;
+        transform: translate(-50%,-50%) translateX(190px) scale(.66) !important;
       }
       .life-reel-frame[data-offset="-1"] {
-        transform: translate(-50%,-50%) translateX(-185px) scale(.68) !important;
+        transform: translate(-50%,-50%) translateX(-190px) scale(.66) !important;
       }
     }
   `;
@@ -69,20 +78,9 @@ function injectLifeReelStyle() {
 function fitLifeReelFrames() {
   injectLifeReelStyle();
   document.querySelectorAll<HTMLElement>('.life-reel-frame').forEach((frame) => {
-    const image = frame.querySelector<HTMLImageElement>('.life-reel-frame-main');
-    if (!image) return;
-
-    const applyRatio = () => {
-      if (!image.naturalWidth || !image.naturalHeight) return;
-      const ratio = image.naturalWidth / image.naturalHeight;
-      frame.style.setProperty('--life-frame-ratio', `${image.naturalWidth} / ${image.naturalHeight}`);
-      const preferredWidth = Math.max(440, Math.min(580, Math.round(310 * ratio)));
-      frame.style.setProperty('--life-frame-width', `${preferredWidth}px`);
-      frame.dataset.originalAspectApplied = 'true';
-    };
-
-    if (image.complete) applyRatio();
-    image.addEventListener('load', applyRatio, { once: true });
+    frame.style.setProperty('--life-frame-ratio', '16 / 9');
+    frame.style.setProperty('--life-frame-width', '560px');
+    frame.dataset.originalAspectApplied = 'true';
   });
 }
 
