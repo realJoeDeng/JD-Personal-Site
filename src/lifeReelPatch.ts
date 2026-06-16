@@ -14,19 +14,11 @@ function injectLifeReelStyle() {
       max-height: none !important;
       background: rgba(4, 9, 14, .78) !important;
     }
-    .life-reel-frame-bg {
-      display: block !important;
-      width: 100% !important;
-      height: 100% !important;
-      object-fit: cover !important;
-      filter: blur(18px) brightness(.46) saturate(.72) !important;
-      transform: scale(1.12) !important;
-      opacity: .34 !important;
-    }
+    .life-reel-frame-bg { display: none !important; }
     .life-reel-frame-main {
       width: 100% !important;
       height: 100% !important;
-      object-fit: contain !important;
+      object-fit: cover !important;
       object-position: center center !important;
       transform: none !important;
     }
