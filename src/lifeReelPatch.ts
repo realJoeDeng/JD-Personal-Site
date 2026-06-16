@@ -18,7 +18,7 @@ function injectLifeReelStyle() {
     .life-reel-frame-main {
       width: 100% !important;
       height: 100% !important;
-      object-fit: cover !important;
+      object-fit: contain !important;
       object-position: center center !important;
       transform: none !important;
     }
