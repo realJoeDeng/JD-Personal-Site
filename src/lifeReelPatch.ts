@@ -1,6 +1,5 @@
 import asset01 from './lifeAsset01';
 import asset03 from './lifeAsset03';
-import asset04 from './lifeAsset04';
 import asset05 from './lifeAsset05';
 import asset06 from './lifeAsset06';
 
@@ -9,6 +8,8 @@ type ReelSource = {
   width?: number;
   height?: number;
 };
+
+const asset04 = `${import.meta.env.BASE_URL}images/site-assets/life-reel-04-sea.webp`;
 
 const ORIGINAL_SOURCES: ReelSource[] = [
   { src: asset01, width: 2048, height: 1148 },
