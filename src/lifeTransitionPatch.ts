@@ -4,8 +4,25 @@ function injectLifeTransitionStyle() {
   const style = document.createElement('style');
   style.id = 'life-transition-ghost-fix';
   style.textContent = `
+    #life {
+      contain: layout paint style;
+    }
+
     #life > div {
       isolation: isolate;
+      contain: paint;
+      transform: translate3d(0, 0, 0);
+      backface-visibility: hidden;
+    }
+
+    #life > div > .absolute.inset-0 {
+      will-change: opacity, transform;
+      transform: translate3d(0, 0, 0);
+      backface-visibility: hidden;
+    }
+
+    #life img {
+      backface-visibility: hidden;
     }
 
     #life[data-life-opening-hidden="true"] > div > :first-child {
@@ -26,9 +43,7 @@ function bindLifeTransitionFix() {
   if (!container || !life) return;
 
   const update = () => {
-    const containerRect = container.getBoundingClientRect();
-    const lifeRect = life.getBoundingClientRect();
-    const lifeStart = container.scrollTop + lifeRect.top - containerRect.top;
+    const lifeStart = life.offsetTop;
     const scrollRange = Math.max(1, life.offsetHeight - container.clientHeight);
     const progress = (container.scrollTop - lifeStart) / scrollRange;
 
